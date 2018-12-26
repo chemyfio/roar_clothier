@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-toolbar app>
+      <v-toolbar-title>
+        <img
+          :src="images.logo"
+          width="75px"
+          padding="25px"
+        />
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn href="#home" flat>Home</v-btn>
+        <v-btn href="#about_us" flat>About Us</v-btn>
+        <v-btn href="#our_product" flat>Our Product</v-btn>
+        <v-btn href="#social" flat>Social</v-btn>
+        <v-btn href="#order" flat>Order</v-btn>
+        <v-btn href="" flat>Blog</v-btn>
+        <v-btn href="#contact" flat>Contact</v-btn>
+        
+      </v-toolbar-items>
+    </v-toolbar>
+
+    <v-content>
+      <Main/>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Main from './components/Main'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
+    Main
+  },
+  data () {
+    return {
+      images:{
+        logo: require('@/assets/logo.png'),
+      }
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
