@@ -3,6 +3,7 @@ import './plugins/vuetify'
 import Vuex from 'vuex';
 import App from './App.vue'
 import router from './router'
+import "./stylus/main.styl";
 // import 'roboto-fontface/css/roboto/roboto-fontface.css';
 // import 'material-design-icons-iconfont/dist/material-design-icons.css';
 // import 'font-awesome/css/font-awesome.min.css';

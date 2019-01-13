@@ -1,5 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
+import * as easings from 'vuetify/es5/util/easing-patterns'
 
 export default {
     el: '#app',
@@ -14,6 +15,7 @@ export default {
           {src: require('@/assets/back-resize.png')},
           {src: require('@/assets/ukuran.jpg')},
           {src: require('@/assets/icons8-document-96.png')},
+          {src: require('@/assets/stripped.jpg')},
         ],  
         products:[
           {src: require('@/assets/Bag-icon.png'), desc:'Bag'},
@@ -39,11 +41,28 @@ export default {
         next_url: "",
         error: false,
         dialog: false,
+        scrolling:{
+          type: 'selector',
+          duration: 300,
+          offset: 0,
+          easing: 'easeInOutCubic',
+          easings: Object.keys(easings)
+        },
+
         computed: {
           instapage() {
             return 'https://www.instagram.com/' + this.username
-          }
+          },
+          options () {
+            return {
+              duration: this.scrolling.duration,
+              offset: this.scrolling.offset,
+              easing: this.scrolling.easing
+            }
+          },
         },
+        
+        
       }),
       methods: {
         getGrams() {

@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <!-- <div id="app"> -->
       <v-app>
         <section id="home">
           <v-carousel
@@ -15,38 +15,46 @@
         </section>
 
         <section id="about_us">
-          <v-parallax :src="images[0].src" height="600" width="100%">
-            <v-layout
-              column
-              align-center
-              justify-center
-            >
-              <div class="white black--text" margin="30px">
-                <h1 class="mb-2 display-1 text-xs-center">About Us</h1>
-                <div class="subheading mb-3 text-xs-center">
-                  Roar_Clothier merupakan salah 1 konveksi asal Bandung yang telah berdiri sejak tahun 2016. 
-                  Didirikan oleh dua mahasiswa ITB yang ingin membantu perekonomian Warga Kota Bandung dengan 
-                  menerapkan sistem Win-Win Solution. Walau usia konveksi masih tergolong relatif muda, 
-                  Roar_Clothier telah melayani berbagai macam pesanan produk baik dalam maupun luar Pulau Jawa. Selain ingin membantu para Warga Kota Bandung, Roar_Clothier lahir dari keprihatinan kami akan kebutuhan konsumen untuk berkonsultasi terkait kebutuhan informasi akan bahan dan keprihatinan kami melihat banyaknya konveksi yang tidak jujur atau kurang memahami dalam memberikan informasi terkait bahan-bahan yang digunakan dalam produksi.
+          <v-app id="para">
+            <v-parallax :src="images[0].src" height="600" >
+              <v-layout
+                column
+                justify-center
+              >
+                <div class="grey darken-4 white--text mx-5 pa-5 ">
+                  <h4 class="mb-2 display-1 font-weight-black">ABOUT US</h4>
+                  <div class="subheading font-weight-light mb-3 ">
+                    Roar_Clothier merupakan salah 1 konveksi asal Bandung yang telah berdiri sejak tahun 2016. 
+                    Didirikan oleh dua mahasiswa ITB yang ingin membantu perekonomian Warga Kota Bandung dengan 
+                    menerapkan sistem Win-Win Solution. Walau usia konveksi masih tergolong relatif muda, 
+                    Roar_Clothier telah melayani berbagai macam pesanan produk baik dalam maupun luar Pulau Jawa. Selain ingin membantu para Warga Kota Bandung, Roar_Clothier lahir dari keprihatinan kami akan kebutuhan konsumen untuk berkonsultasi terkait kebutuhan informasi akan bahan dan keprihatinan kami melihat banyaknya konveksi yang tidak jujur atau kurang memahami dalam memberikan informasi terkait bahan-bahan yang digunakan dalam produksi.
+                  </div>
                 </div>
-              </div>
-            </v-layout>
-          </v-parallax>
+              </v-layout>
+            </v-parallax>
+          </v-app>
         </section>
 
-        <section>
-          <v-layout height="600" id="our_product">
+        <section id="our_product">
+          <v-layout height="600" >
             <v-container grid-list-md text-xs-center color="blue-grey darken-1">
-              <h1 class="mb-2 display-1 text-xs-center">Our Product</h1>
+              <h4 class="mb-2 display-1 font-weight-black text-xs-center">OUR PRODUCT</h4>
               <v-layout row wrap >
                 <v-flex v-for="(product,i) in products" :key="i" xs4>
-                  <v-card dark height="200" color="transparent">
-                    <img
-                      height="100"
-                      :src="product.src"
-                    >
-                    <v-card-text class="black--text">{{ product.desc }}</v-card-text>
-                  </v-card>
+                  <v-hover>
+                    <v-card 
+                      slot-scope="{ hover }"
+                      class="mx-auto ma-2 pa-3"
+                      :class="`elevation-${hover ? 12 : 2}`"
+                      dark color="transparent">
+                      <img
+                        height="100"
+                        :src="product.src"
+                      >
+                      
+                      <v-card-text class="black--text">{{ product.desc }}</v-card-text>
+                    </v-card>
+                  </v-hover>
                 </v-flex>
               </v-layout>
               <div>
@@ -56,29 +64,54 @@
           </v-layout>
         </section>
         
-        <section id="social">
-          <v-container grid-list-xs>
-            <h1 class="mb-2 display-1 text-xs-center">Social</h1>
+        <section id="social" class="grey darken-4 white--text">
+          <v-container grid-list-xs height="600">
+            <h4 class="display-1 font-weight-black text-xs-center">SOCIAL</h4>
             <v-layout row wrap justify-center>
-              <v-flex
-                v-for="(gram, index) in grams"
-                :key=index
-                sm2
-                xs3
-              >
-                <a :href="gram.link">
-                  <img :src="gram.images.thumbnail.url" :alt="gram.text" />
-                </a>
-              </v-flex>
+              
+                  <v-flex
+                    v-for="(gram, index) in grams"
+                    :key=index
+                    sm3
+                    xs3
+                  >
+                  <v-hover>
+                <v-card
+                    slot-scope="{ hover }">
+                    <a :href="gram.link">
+                      <v-img 
+                        :src="gram.images.low_resolution.url" 
+                        style="max_height:320">
+
+                        <v-expand-transition>
+                          <div
+                            v-if="hover"
+                            align-center
+                            class="d-flex transition-fast-in-fast-out black v-card--reveal white--text"
+                            style="height: 100%; opacity:0.5"
+                          >
+                            <v-card-actions>
+                              <v-btn icon class="red--text">
+                                <v-icon medium>fa-reddit</v-icon>
+                              </v-btn>
+                            </v-card-actions>
+                          </div>
+                        </v-expand-transition>
+                      </v-img>
+                    </a>
+                </v-card>
+                  </v-hover>
+                </v-flex>
             </v-layout>
           </v-container>
         </section>
 
         <section id="order">
-          <v-container grid-list-xs>
-            <v-layout row wrap justify-center>
-              <v-flex xs6>
-                <h2 class="mb-2 display-1 text-xs-center">FAQ</h2>
+          <v-parallax :src="images[3].src" height="600" >
+          <v-container grid-list-xs >
+            <v-layout row wrap justify-center class="grey darken-4 ma-1 pa-3">
+              <v-flex xs6 >
+                <h4 class="mb-2 display-1 font-weight-black text-xs-center">FAQ</h4>
                 <v-expansion-panel>
                   <v-expansion-panel-content
                     v-for="(item,i) in 5"
@@ -91,16 +124,17 @@
                   </v-expansion-panel-content>
                 </v-expansion-panel>
               </v-flex>
-              <v-flex xs6>
-                <h2 class="mb-2 display-1 text-xs-center">Order</h2>
+              <v-flex xs6 >
+                <h4 class="mb-2 display-1 font-weight-black text-xs-center">ORDER</h4>
                 <div class="text-xs-center align-center">
+                  <span slot="activator" class="ma-3"> How to <i>order</i>? It's easy! Just download the document below this, 
+                  fill up your order spesification, and send it to roarclothier@gmail.com </span>
+                  <a><img :src="images[2].src" v-on:click="getDownloadFile()" class="mt-3"></a>
                   <v-dialog
                     v-model="dialog"
                     width="800"
                   >
-                    
-                    <span slot="activator"> How to <i>order</i>? It's easy! Just download the document below this and you'll find the way. 
-                Need guideline for clothes size? <b>Click here.</b> </span>
+                    <br><br>Need guideline for clothes size? <b>Click here.</b> 
                     <v-card>
                       <v-card-title>
                         <v-spacer></v-spacer>
@@ -109,15 +143,16 @@
                       <img :src="images[1].src" width="750">
                     </v-card>
                   </v-dialog>
-                  <a><img :src="images[2].src" v-on:click="getDownloadFile()"></a>
+                  
                 </div>
               </v-flex>
             </v-layout>
           </v-container>
+          </v-parallax>
         </section>
 
         <section id="contact">
-          <v-container grid-list-xl>
+          <v-container grid-list-xl height="600">
           <v-layout row wrap justify-center class="my-5">
             <v-flex xs12 sm4>
               <v-card
@@ -138,7 +173,7 @@
             <v-flex xs12 sm4 offset-sm1>
               <v-card class="elevation-0 transparent">
                 <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Contact us</div>
+                  <div class="headline font-weight-black">CONTACT US</div>
                 </v-card-title>
                 <v-card-text>
                   Jika kamu butuh bantuan atau informasi tambahan, 
@@ -176,8 +211,15 @@
         </v-container>
         </section>
       </v-app>
-    </div>
+    <!-- </div> -->
 </template>
 
 <script src="./functions/main_methods.js">
  </script>
+
+<style scoped>
+  #para img{
+    height: 100%
+  }
+  @import url('https://fonts.googleapis.com/css?family=Poppins');
+</style>
